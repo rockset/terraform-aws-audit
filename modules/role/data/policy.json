@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Id": "RocksetS3IntegrationPolicy",
+  "Statement": [
+    {
+      "Sid": "BucketActions",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        %{for bucket in buckets ~}
+        "arn:aws:s3:::${bucket}"
+        %{ endfor ~}
+      ]
+    },
+    {
+      "Sid": "ObjectActions",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        %{for bucket in buckets ~}
+        "arn:aws:s3:::${bucket}/${prefix}"
+        %{ endfor ~}
+      ]
+%{ if kms_arn != "" }
+    },
+    {
+      "Sid": "KMSActions",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt"
+      ],
+      "Resource": [
+        "${kms_arn}"
+      ]
+%{ endif }
+    }
+  ]
+}

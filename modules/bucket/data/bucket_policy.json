@@ -1,0 +1,32 @@
+{
+  "Version": "2012-10-17",
+  "Id": "RocksetAuditLogs",
+  "Statement": [
+    {
+      "Sid": "put-object",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "${principal}"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::${bucket}/*",
+      "Condition": {
+        "StringEquals": {
+          "s3:x-amz-acl": "bucket-owner-full-control"
+        }
+      }
+    },
+    {
+      "Sid": "bucket-info",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "${principal}"
+      },
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetEncryptionConfiguration"
+      ],
+      "Resource": "arn:aws:s3:::${bucket}"
+    }
+  ]
+}

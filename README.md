@@ -10,12 +10,27 @@ The simplest for of usage is
 
 ```terraform
 module "audit-trail" {
-  source       = "rockset/audit-tail"
+  source       = "rockset/audit/aws"
+}
+```
+
+Which generates a unique bucket name that starts with `rockset-audit-trail-<date based stamp>`,
+but if you want a specific name, you can supply it using `bucket_name`
+
+```terraform
+module "audit-trail" {
+  source       = "rockset/audit/aws"
   bucket_name  = "name-of-your-bucket"
 }
 ```
 
 ## Requirements
+
+The module requires a Rockset API key which can be supplied using the environment variable `ROCKSET_APIKEY`
+or in the provider definition in your terraform config, and it also requires AWS credentials which
+can be provided as described in the
+[AWS authentication](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication)
+documentation for the AWS terraform provider.
 
 | Name | Version |
 |------|---------|
@@ -42,7 +57,7 @@ If `bucket_name` isn't specified, the module will use the default `bucket_prefix
 
 ### Bug Reports & Feature Requests
 
-Please use the [issue tracker](https://github.com/rockset/terraform-rockset-audit-trail-bucket/issues) to report any bugs or file feature requests.
+Please use the [issue tracker](https://github.com/rockset/terraform-audit-aws/issues) to report any bugs or file feature requests.
 
 ### Developing
 

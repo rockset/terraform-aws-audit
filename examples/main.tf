@@ -10,16 +10,21 @@ terraform {
   }
 }
 
+provider "rockset" {}
+
 provider "aws" {
   region  = "us-west-2"
-  profile = "sandbox"
 }
 
 module "audit-trail" {
-  source = "./.."
+  source = "rockset/audit/aws"
   rockset_role_name = "test-s3-integration"
 }
 
 output "bucket_name" {
   value = module.audit-trail.bucket_name
+}
+
+output "integration_name" {
+  value = module.audit-trail.integration_name
 }

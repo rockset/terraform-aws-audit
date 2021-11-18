@@ -1,7 +1,18 @@
 output "bucket_name" {
-  value = module.bucket.bucket_name
+  value = module.bucket.name
 }
 
-output "integration_name" {
-  value = module.ingest.integration_name
+output "bucket_region" {
+  value = module.bucket.region
+}
+
+output "bucket_kms_arn" {
+  value = module.bucket.kms_arn
+}
+
+output "bucket_account" {
+  value = module.bucket.account
+}
+output "role_arn" {
+  value = module.rockset-role.role_arn
 }

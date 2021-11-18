@@ -18,7 +18,6 @@ provider "aws" {
 
 module "audit-trail" {
   source = "rockset/audit/aws"
-  rockset_role_name = "test-s3-integration"
 }
 
 output "bucket_name" {

@@ -31,7 +31,7 @@ module "bucket" {
 
 module "rockset-role" {
   source              = "./modules/role"
-  buckets             = [module.bucket.bucket_name]
+  buckets             = [module.bucket.name]
   bucket_prefix       = var.bucket_path_prefix
   kms_arn             = module.bucket.kms_arn
   rockset_role_name   = var.rockset_role_name
@@ -41,8 +41,8 @@ module "rockset-role" {
 
 module "ingest" {
   source           = "./modules/ingest"
-  bucket_name      = module.bucket.bucket_name
-  rockset_role_arn = module.rockset-role.rockset-role-arn
+  bucket_name      = module.bucket.name
+  rockset_role_arn = module.rockset-role.role_arn
   workspace        = var.workspace
   collection       = var.collection
   retention_secs   = var.retention_secs

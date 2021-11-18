@@ -27,6 +27,5 @@ variable "rockset_role_name" {
 
 variable "kms_arn" {
   type = string
-  default = ""
   description = "KMS ARN for tge key used to encrypt the audit bucket."
 }

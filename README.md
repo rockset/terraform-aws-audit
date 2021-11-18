@@ -50,8 +50,10 @@ If `bucket_name` isn't specified, the module will use the default `bucket_prefix
 
 | Name | Description |
 |------|-------------|
+| bucket_account | Account number for the S3 bucket |
+| bucket_kms_arn | ARN of the KMS key for the S3 bucket | 
 | bucket_name | Name of the S3 bucket |
-| integration_name | Name of the Rockset integration that was created | 
+| bucket_region | AWS Region the S3 bucket resides in|
 
 ## Contributing
 
